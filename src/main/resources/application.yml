@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 9000
 eureka:
   client:
     register-with-eureka: true
@@ -9,8 +9,13 @@ eureka:
 spring:
   application:
     name: api-gateway-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   profiles:
-    active: dev
+    active: native
   cloud:
     gateway:
       default-filters:
@@ -95,7 +100,7 @@ spring:
                 preLogger: true
                 postLogger: true
     config:
-      name: ecommerce
+      name: no
   config:
     import: optional:configserver:http://localhost:8888
 
@@ -106,4 +111,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans, httptrace
+        include: refresh, health, beans, httptrace, busrefresh
